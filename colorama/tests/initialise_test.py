@@ -15,6 +15,7 @@ orig_stderr = sys.stderr
 
 class InitTest(TestCase):
 
+    @skipUnless(sys.stdout.isatty(), "sys.stdout is not a tty")
     def setUp(self):
         # sanity check
         self.assertNotWrapped()
