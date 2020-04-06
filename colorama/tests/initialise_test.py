@@ -45,13 +45,11 @@ class InitTest(TestCase):
 
     @patch('colorama.initialise.reset_all')
     @patch('colorama.ansitowin32.winapi_test', lambda *_: False)
-    @skipUnless(sys.stdout.isatty(), "sys.stdout is not a tty")
     def testInitDoesntWrapOnEmulatedWindows(self, _):
         with osname("nt"):
             init()
             self.assertNotWrapped()
             
-    @skipUnless(sys.stdout.isatty(), "sys.stdout is not a tty")
     def testInitDoesntWrapOnNonWindows(self):
         with osname("posix"):
             init()
